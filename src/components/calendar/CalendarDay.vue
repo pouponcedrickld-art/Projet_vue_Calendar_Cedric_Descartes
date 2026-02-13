@@ -1,3 +1,7 @@
+
+<script setup>
+defineProps(['dayName']); // Reçoit le nom du jour (ex: "Monday")
+</script>
 <template>
     <div class="calendar-day">
         <h3 class="day-label">{{ dayName }}</h3>
@@ -6,10 +10,6 @@
         </div>
     </div>
 </template>
-
-<script setup>
-defineProps(['dayName']); // Reçoit le nom du jour (ex: "Monday")
-</script>
 
 <style scoped>
 .calendar-day {

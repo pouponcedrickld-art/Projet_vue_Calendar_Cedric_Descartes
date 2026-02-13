@@ -1,3 +1,8 @@
+<script setup>
+defineProps(['eventText']);
+defineEmits(['edit', 'delete']);
+</script>
+
 <template>
     <div class="event-item">
         <span>{{ eventText }}</span>
@@ -7,10 +12,7 @@
     </div>
 </template>
 
-<script setup>
-defineProps(['eventText']);
-defineEmits(['edit', 'delete']);
-</script>
+
 
 <style scoped>
 .event-item {
