@@ -1,7 +1,6 @@
 <script setup>
 import { useEventStore } from '@/stores/eventStore'
-import EventItem from '@/components/event/EventItem.vue'
-
+import EventItem from './event/EventItem.vue';
 const eventStore = useEventStore()
 
 const days = [

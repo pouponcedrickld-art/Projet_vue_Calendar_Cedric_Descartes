@@ -1,11 +1,19 @@
-<script setup></script>
+<script setup>
+import CalendarGrid from './component/calendarGrid.vue';
+import EventForm from './component/EventForm.vue';
+
+
+</script>
 
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+<CalendarGrid></CalendarGrid>
+  <EventForm></EventForm>
 </template>
 
-<style scoped></style>
+<style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f3f5f7;
+}
+</style>
