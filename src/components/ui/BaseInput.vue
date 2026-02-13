@@ -1,12 +1,12 @@
+<script setup>
+defineProps(['modelValue']);
+defineEmits(['update:modelValue']);
+</script>
 <template>
     <input class="base-input" :value="modelValue" @input="$emit('update:modelValue', $event.target.value)"
         v-bind="$attrs" />
 </template>
 
-<script setup>
-defineProps(['modelValue']);
-defineEmits(['update:modelValue']);
-</script>
 
 <style scoped>
 .base-input {

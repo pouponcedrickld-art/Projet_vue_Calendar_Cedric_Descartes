@@ -1,3 +1,7 @@
+<script setup>
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+</script>
+
 <template>
     <div class="calendar-grid">
         <div v-for="day in days" :key="day" class="day-header">
@@ -6,9 +10,7 @@
     </div>
 </template>
 
-<script setup>
-const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-</script>
+
 
 <style scoped>
 .calendar-grid {
