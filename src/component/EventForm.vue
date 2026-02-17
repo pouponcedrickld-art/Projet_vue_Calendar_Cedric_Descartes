@@ -6,8 +6,12 @@ const eventStore = useEventStore()
 const title = ref('')
 
 function submit() {
-  if (!title.value) return
+  if (!title.value.trim()) return
+
+  // Cette action dans ton store appelle déjà closeModal()
   eventStore.addEvent(title.value)
+
+  // Reset le champ
   title.value = ''
 }
 </script>
@@ -29,25 +33,52 @@ function submit() {
 
 <style scoped>
 .form {
-  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
 .input {
   width: 100%;
   border: none;
-  border-bottom: 2px solid #e5e7eb;
-  padding: 10px 0;
-  margin-bottom: 20px;
+  border-bottom: 3px solid #10b981;
+  padding: 12px 0;
+  margin-bottom: 24px;
   outline: none;
+  font-size: 15px;
+  font-family: inherit;
+  background: transparent;
+  color: #374151;
+  transition: border-color 0.2s ease;
+}
+
+.input::placeholder {
+  color: #9ca3af;
+}
+
+.input:focus {
+  border-bottom-color: #059669;
 }
 
 .submit-btn {
-  background-color: #22c55e;
+  background-color: #10b981;
   color: white;
-  padding: 10px 18px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 6px;
-  font-weight: 600;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
   cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+}
+
+.submit-btn:hover {
+  background-color: #059669;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.submit-btn:active {
+  transform: scale(0.98);
 }
 </style>

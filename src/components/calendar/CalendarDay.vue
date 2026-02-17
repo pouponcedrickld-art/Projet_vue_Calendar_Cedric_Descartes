@@ -13,19 +13,36 @@ defineProps(['dayName']); // Reçoit le nom du jour (ex: "Monday")
 
 <style scoped>
 .calendar-day {
-    border: 1px solid #ddd;
-    min-height: 300px;
-    background: #fff;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  min-height: 120px;
+  padding: 12px 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.calendar-day:hover {
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+  border-color: #10b981;
 }
 
 .day-label {
-    padding: 10px;
-    background: #f4f4f4;
-    text-align: center;
-    border-bottom: 1px solid #ddd;
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b7280;
+  margin: 0 0 8px 0;
+  padding: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .events-zone {
-    padding: 5px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
 }
 </style>
