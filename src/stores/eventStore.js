@@ -6,6 +6,10 @@ export const useEventStore = defineStore('event', () => {
   const isModalOpen = ref(false)
   const selectedDay = ref('Monday')
   const editingEvent = ref(null) // Stocke l'événement à modifier
+  
+  // États pour la modale de confirmation
+  const isDeleteConfirmOpen = ref(false)
+  const eventToDelete = ref(null)
 
   function openModal(day) {
     editingEvent.value = null // Reset édition pour un nouvel ajout
@@ -24,6 +28,23 @@ export const useEventStore = defineStore('event', () => {
     editingEvent.value = null
   }
 
+  function openDeleteConfirm(eventId) {
+    eventToDelete.value = eventId
+    isDeleteConfirmOpen.value = true
+  }
+
+  function closeDeleteConfirm() {
+    isDeleteConfirmOpen.value = false
+    eventToDelete.value = null
+  }
+
+  function confirmDeleteEvent() {
+    if (eventToDelete.value) {
+      events.value = events.value.filter(e => e.id !== eventToDelete.value)
+      closeDeleteConfirm()
+    }
+  }
+
   function addEvent(title) {
     events.value.push({ id: Date.now(), day: selectedDay.value, title })
     closeModal()
@@ -38,11 +59,30 @@ export const useEventStore = defineStore('event', () => {
     closeModal()
   }
 
-  function deleteEvent(eventId) {
-    if (window.confirm('Voulez-vous vraiment supprimer ?')) {
-      events.value = events.value.filter(e => e.id !== eventId)
+  function moveEvent(eventId, currentDay, targetDay) {
+    if (currentDay === targetDay) return
+    
+    const index = events.value.findIndex(e => e.id === eventId)
+    if (index !== -1) {
+      events.value[index].day = targetDay
     }
   }
 
-  return { events, isModalOpen, selectedDay, editingEvent, openModal, openEditModal, closeModal, addEvent, updateEvent, deleteEvent }
+  return { 
+    events, 
+    isModalOpen, 
+    selectedDay, 
+    editingEvent,
+    isDeleteConfirmOpen,
+    eventToDelete,
+    openModal, 
+    openEditModal, 
+    closeModal, 
+    addEvent, 
+    updateEvent, 
+    confirmDeleteEvent,
+    moveEvent,
+    openDeleteConfirm,
+    closeDeleteConfirm
+  }
 })
