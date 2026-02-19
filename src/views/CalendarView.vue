@@ -14,7 +14,7 @@ const newEventName = ref('');
         <CalendarHeader />
         <main class="container">
             <div class="actions">
-                <BaseButton @click="showModal = true">+ New Event</BaseButton>
+         <BaseButton @click="showModal = true">+ New Event</BaseButton>
             </div>
             <CalendarGrid />
         </main>

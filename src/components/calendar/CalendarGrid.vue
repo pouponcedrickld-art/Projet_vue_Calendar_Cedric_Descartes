@@ -77,45 +77,80 @@ function handleDrop(event, targetDay) {
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 12px;
-  max-width: 1200px;
-  margin: 0 auto;
+  gap: 20px;
+  width: 100%;
 }
 
 .calendar-day {
   display: flex;
   flex-direction: column;
-  background: #ffffff;
-  border: 2px dashed #e5e7eb;
-  border-radius: 8px;
-  padding: 16px;
-  min-height: 200px;
+  background: #e0e5ec;
+  border-radius: 20px;
+  padding: 20px;
+  min-height: 220px;
   cursor: pointer;
   transition: all 0.3s ease;
+  box-shadow: 
+    9px 9px 16px #a3b1c6,
+    -9px -9px 16px #ffffff;
+  position: relative;
+  overflow: hidden;
 }
 
 .calendar-day:hover {
-  box-shadow: 0 8px 16px rgba(16, 185, 129, 0.15);
-  border-color: #10b981;
-  border-style: solid;
+  box-shadow: 
+    12px 12px 24px #a3b1c6,
+    -12px -12px 24px #ffffff;
   transform: translateY(-2px);
 }
 
 .calendar-day.drag-over {
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-  border-color: #10b981;
-  border-style: solid;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  background: #d1d9e0;
+  box-shadow: 
+    inset 6px 6px 12px #a3b1c6,
+    inset -6px -6px 12px #ffffff;
+  transform: scale(1.02);
 }
 
 .day-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: #6b7280;
-  margin-bottom: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 16px;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 1px;
   padding-bottom: 12px;
-  border-bottom: 2px solid #f3f4f6;
+  border-bottom: 2px solid #cbd5e0;
+  text-align: center;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .calendar-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  
+  .calendar-day {
+    min-height: 180px;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .calendar-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .calendar-day {
+    min-height: 150px;
+    padding: 12px;
+    border-radius: 16px;
+  }
+  
+  .day-title {
+    font-size: 12px;
+  }
 }
 </style>

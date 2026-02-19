@@ -6,7 +6,7 @@ const eventStore = useEventStore()
 </script>
 
 <template>
-  <div class="fixed-side-modal">
+  <div class="bottom-modal">
     <div class="modal-header">
       <div>
         <h2>{{ eventStore.editingEvent ? 'Edit Event' : 'Add a new event' }}</h2>
@@ -20,66 +20,108 @@ const eventStore = useEventStore()
 </template>
 
 <style scoped>
-.fixed-side-modal {
+.bottom-modal {
   position: fixed;
-  top: 40px;
-  /* Fixé en haut */
-  right: 40px;
-  /* Fixé à droite */
-  width: 350px;
-  background: #ffffff;
-  padding: 24px;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #e0e5ec;
+  padding: 28px;
+  border-radius: 24px 24px 0 0;
+  box-shadow: 
+    0 -20px 60px #a3b1c6,
+    0 20px 60px #ffffff;
   z-index: 1000;
-  /* Rappel visuel vert */
-  animation: slideIn 0.3s ease;
+  animation: slideUp 0.4s ease-out;
+  transform: translateY(100%);
+  transition: transform 0.4s ease-out;
 }
 
-@keyframes slideIn {
-  from {
-    transform: translateX(20px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
+.bottom-modal.show {
+  transform: translateY(0);
 }
 
 .modal-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 20px;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #cbd5e0;
 }
 
-h2 {
-  font-size: 16px;
-  font-weight: 700;
-  color: #1f2937;
+.modal-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2d3748;
   margin: 0;
 }
 
-.day {
-  color: #f97316;
-  margin-top: 4px;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
+.modal-header .day {
+  font-size: 14px;
+  color: #718096;
+  margin: 4px 0 0 0;
 }
 
 .close-btn {
-  background: #fef2f2;
+  background: #e0e5ec;
   border: none;
-  color: #ef4444;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  font-size: 18px;
+  color: #718096;
   cursor: pointer;
+  box-shadow: 
+    6px 6px 12px #a3b1c6,
+    -6px -6px 12px #ffffff;
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.close-btn:hover {
+  box-shadow: 
+    8px 8px 16px #a3b1c6,
+    -8px -8px 16px #ffffff;
+  transform: translateY(-2px);
+  color: #2d3748;
+}
+
+.close-btn:active {
+  box-shadow: 
+    inset 4px 4px 8px #a3b1c6,
+    inset -4px -4px 8px #ffffff;
+  transform: scale(0.95);
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .bottom-modal {
+    padding: 20px;
+    border-radius: 20px 20px 0 0;
+  }
+  
+  .modal-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
 }
 </style>

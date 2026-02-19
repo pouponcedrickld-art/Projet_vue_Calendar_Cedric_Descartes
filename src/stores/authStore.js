@@ -14,7 +14,7 @@ export const useAuthStore = defineStore('auth', () => {
     
     // Simulation d'une API call
     setTimeout(() => {
-      if (email === 'admin@erp.com' && password === 'admin123') {
+      if (email === 'cedric@gmail.com' && password === '123') {
         user.value = {
           id: 1,
           email: email,

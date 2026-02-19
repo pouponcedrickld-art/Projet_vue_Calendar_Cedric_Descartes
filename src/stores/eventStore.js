@@ -68,6 +68,11 @@ export const useEventStore = defineStore('event', () => {
     }
   }
 
+  function logout() {
+    localStorage.removeItem('user')
+    window.location.href = '/login'
+  }
+
   return { 
     events, 
     isModalOpen, 
@@ -83,6 +88,7 @@ export const useEventStore = defineStore('event', () => {
     confirmDeleteEvent,
     moveEvent,
     openDeleteConfirm,
-    closeDeleteConfirm
+    closeDeleteConfirm,
+    logout
   }
 })

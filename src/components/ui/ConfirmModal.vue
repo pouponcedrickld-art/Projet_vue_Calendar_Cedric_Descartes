@@ -10,8 +10,12 @@
       </div>
       
       <div class="modal-footer">
-        <button @click="$emit('cancel')" class="btn btn-cancel">Annuler</button>
-        <button @click="$emit('confirm')" class="btn btn-danger">{{ confirmText }}</button>
+        <button @click="$emit('cancel')" class="btn btn-cancel">
+          Annuler
+        </button>
+        <button @click="$emit('confirm')" class="btn btn-danger">
+          {{ confirmText }}
+        </button>
       </div>
     </div>
   </div>
@@ -44,95 +48,153 @@ defineEmits(['confirm', 'cancel'])
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
+  backdrop-filter: blur(4px);
 }
 
 .modal-content {
-  background: white;
-  border-radius: 12px;
+  background: #e0e5ec;
+  border-radius: 24px;
   padding: 0;
-  max-width: 400px;
+  max-width: 420px;
   width: 90%;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-  animation: slideIn 0.3s ease-out;
+  box-shadow: 
+    20px 20px 60px #a3b1c6,
+    -20px -20px 60px #ffffff;
+  animation: slideIn 0.4s ease-out;
 }
 
 @keyframes slideIn {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-30px) scale(0.9);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
 .modal-header {
-  background: linear-gradient(135deg, #f8faf4 0%, #f1f5f9 100%);
-  padding: 20px;
-  border-radius: 12px 12px 0 0;
-  border-bottom: 1px solid #e5e7eb;
+  background: #e0e5ec;
+  padding: 24px;
+  border-radius: 24px 24px 0 0;
+  border-bottom: 2px solid #cbd5e0;
 }
 
 .modal-header h3 {
   margin: 0;
-  color: #1f2937;
-  font-size: 18px;
+  color: #2d3748;
+  font-size: 20px;
   font-weight: 600;
+  text-align: center;
 }
 
 .modal-body {
-  padding: 20px;
+  padding: 24px;
+  text-align: center;
 }
 
 .modal-body p {
   margin: 0;
-  color: #4b5563;
+  color: #4a5568;
   font-size: 16px;
   line-height: 1.5;
 }
 
 .modal-footer {
-  padding: 20px;
+  padding: 24px;
   display: flex;
-  gap: 12px;
-  justify-content: flex-end;
-  border-top: 1px solid #e5e7eb;
+  gap: 16px;
+  justify-content: center;
+  border-top: 2px solid #cbd5e0;
 }
 
 .btn {
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 8px;
+  border-radius: 16px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  min-width: 100px;
 }
 
 .btn-cancel {
-  background: #f3f4f6;
-  color: #6b7280;
-  border: 1px solid #d1d5db;
+  background: #e0e5ec;
+  color: #4a5568;
+  box-shadow: 
+    6px 6px 12px #a3b1c6,
+    -6px -6px 12px #ffffff;
 }
 
 .btn-cancel:hover {
-  background: #e5e7eb;
+  box-shadow: 
+    8px 8px 16px #a3b1c6,
+    -8px -8px 16px #ffffff;
+  transform: translateY(-2px);
+}
+
+.btn-cancel:active {
+  box-shadow: 
+    inset 4px 4px 8px #a3b1c6,
+    inset -4px -4px 8px #ffffff;
+  transform: scale(0.95);
 }
 
 .btn-danger {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  color: white;
+  background: #e0e5ec;
+  color: #e53e3e;
+  box-shadow: 
+    6px 6px 12px #a3b1c6,
+    -6px -6px 12px #ffffff;
 }
 
 .btn-danger:hover {
-  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  box-shadow: 
+    8px 8px 16px #a3b1c6,
+    -8px -8px 16px #ffffff;
+  transform: translateY(-2px);
+  color: #c53030;
+}
+
+.btn-danger:active {
+  box-shadow: 
+    inset 4px 4px 8px #a3b1c6,
+    inset -4px -4px 8px #ffffff;
+  transform: scale(0.95);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-content {
+    margin: 20px;
+    border-radius: 20px;
+  }
+  
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 20px;
+  }
+  
+  .modal-header h3 {
+    font-size: 18px;
+  }
+  
+  .modal-body p {
+    font-size: 14px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    font-size: 13px;
+    min-width: 80px;
+  }
 }
 </style>
